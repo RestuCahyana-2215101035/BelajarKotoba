@@ -206,9 +206,6 @@
                     <button @click="switchTab('latihan')" class="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 font-bold rounded-xl text-sm transition shadow-lg flex items-center gap-2">
                       <i class="fa-solid fa-play"></i> Mulai Uji Pemahaman
                     </button>
-                    <button @click="switchTab('kata_benda')" class="px-5 py-2.5 bg-slate-800/80 hover:bg-slate-800 font-bold rounded-xl text-sm transition border border-slate-700 flex items-center gap-2">
-                      <i class="fa-solid fa-book"></i> Pelajari Materi
-                    </button>
                   </div>
                 </div>
               </div>
@@ -221,7 +218,7 @@
                   </div>
                   <div>
                     <div class="text-2xl font-black text-slate-800" x-text="getTotalKotobaCount()"></div>
-                    <div class="text-xs font-medium text-slate-500">Total Item Materi[cite: 1]</div>
+                    <div class="text-xs font-medium text-slate-500">Total Item Materi</div>
                   </div>
                 </div>
 
@@ -231,7 +228,7 @@
                   </div>
                   <div>
                     <div class="text-2xl font-black text-slate-800" x-text="materiData.kanji_list.length"></div>
-                    <div class="text-xs font-medium text-slate-500">Karakter Kanji[cite: 1]</div>
+                    <div class="text-xs font-medium text-slate-500">Karakter Kanji</div>
                   </div>
                 </div>
 
@@ -241,7 +238,7 @@
                   </div>
                   <div>
                     <div class="text-2xl font-black text-slate-800">13 Modul</div>
-                    <div class="text-xs font-medium text-slate-500">Materi Lengkap[cite: 1]</div>
+                    <div class="text-xs font-medium text-slate-500">Materi Lengkap</div>
                   </div>
                 </div>
               </div>
@@ -911,7 +908,7 @@
             'kk_gol1': 'Kata Kerja Golongan I',
             'kk_gol2': 'Kata Kerja Golongan II',
             'kk_gol3': 'Kata Kerja Golongan III',
-            'latihan': 'Uji Pemahaman Kotoba'
+            'latihan': 'Uji Pemahaman'
           };
           return titles[tab] || '';
         },
