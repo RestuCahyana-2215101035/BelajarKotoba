@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Belajar Kotoba</title>
+  <title>Minna no nihongo 1 N5</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Alpine.js untuk interaksi Dropdown, Navigasi, & Data State -->
@@ -23,8 +23,8 @@
       
       <!-- Sidebar Header -->
       <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800">
-        <h1 class="text-xl font-bold text-white flex items-center gap-2 cursor-pointer" @click="switchTab('dashboard')">
-          <i class="fa-solid fa-language text-rose-500"></i> KotobaApp
+        <h1 class="text-lg font-bold text-white flex items-center gap-2 cursor-pointer" @click="switchTab('dashboard')">
+          <i class="fa-solid fa-language text-rose-500"></i> Minna no Nihongo 1
         </h1>
         <button @click="sidebarOpen = false" class="md:hidden text-slate-400 hover:text-white">
           <i class="fa-solid fa-xmark text-xl"></i>
@@ -75,7 +75,7 @@
           <span>Kata Bilangan (Suuji)</span>
         </button>
 
-        <!-- Menu 1: Kotoba (Dengan Dropdown) -->
+        <!-- Menu 1: Kotoba (Dengan Dropdown - Default Tertutup) -->
         <div>
           <button @click="kotobaDropdown = !kotobaDropdown" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition font-medium">
             <div class="flex items-center gap-3">
@@ -154,12 +154,12 @@
           </div>
         </div>
 
-        <!-- Menu 2: Latihan Kotoba -->
+        <!-- Menu 2: Uji Pemahaman -->
         <button @click="switchTab('latihan')" 
                 :class="activeTab === 'latihan' ? 'bg-rose-600 text-white font-medium' : 'hover:bg-slate-800 hover:text-white'" 
                 class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition font-medium">
           <i class="fa-solid fa-pen-to-square w-5"></i>
-          <span>Latihan Kotoba</span>
+          <span>Uji Pemahaman</span>
         </button>
 
       </nav>
@@ -196,18 +196,18 @@
               <div class="bg-gradient-to-r from-slate-900 via-rose-950 to-rose-900 rounded-3xl p-6 md:p-8 text-white shadow-xl relative overflow-hidden">
                 <div class="relative z-10 space-y-3">
                   <span class="bg-rose-500/30 text-rose-200 text-xs font-semibold px-3 py-1 rounded-full border border-rose-400/30">
-                    ようこそ ! Selamat Datang
+                    ようこそ ! Minna no Nihongo 1 N5
                   </span>
-                  <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Kuasai Kotoba Bahasa Jepang Dengan Mudah</h2>
+                  <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Kuasai Kotoba & Kosakata Bahasa Jepang Dengan Mudah</h2>
                   <p class="text-slate-300 text-sm md:text-base max-w-xl">
-                    Aplikasi pembelajaran interaktif untuk menghafal kosakata, hiragana, katakana, kanji dasar, kata kerja, dan menguji kemampuan kamu melalui mode kuis.
+                    Aplikasi pembelajaran interaktif untuk menghafal kosakata, hiragana, katakana, kanji, kata kerja, dan menguji pemahaman kamu.
                   </p>
                   <div class="pt-2 flex flex-wrap gap-3">
                     <button @click="switchTab('latihan')" class="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 font-bold rounded-xl text-sm transition shadow-lg flex items-center gap-2">
-                      <i class="fa-solid fa-play"></i> Mulai Ujian / Latihan
+                      <i class="fa-solid fa-play"></i> Mulai Uji Pemahaman
                     </button>
-                    <button @click="switchTab('kanji_page')" class="px-5 py-2.5 bg-slate-800/80 hover:bg-slate-800 font-bold rounded-xl text-sm transition border border-slate-700 flex items-center gap-2">
-                      <i class="fa-solid fa-pen-nib"></i> Pelajari Kanji
+                    <button @click="switchTab('kata_benda')" class="px-5 py-2.5 bg-slate-800/80 hover:bg-slate-800 font-bold rounded-xl text-sm transition border border-slate-700 flex items-center gap-2">
+                      <i class="fa-solid fa-book"></i> Pelajari Materi
                     </button>
                   </div>
                 </div>
@@ -221,7 +221,7 @@
                   </div>
                   <div>
                     <div class="text-2xl font-black text-slate-800" x-text="getTotalKotobaCount()"></div>
-                    <div class="text-xs font-medium text-slate-500">Total Item Materi</div>
+                    <div class="text-xs font-medium text-slate-500">Total Item Materi[cite: 1]</div>
                   </div>
                 </div>
 
@@ -231,7 +231,7 @@
                   </div>
                   <div>
                     <div class="text-2xl font-black text-slate-800" x-text="materiData.kanji_list.length"></div>
-                    <div class="text-xs font-medium text-slate-500">Karakter Kanji</div>
+                    <div class="text-xs font-medium text-slate-500">Karakter Kanji[cite: 1]</div>
                   </div>
                 </div>
 
@@ -241,28 +241,19 @@
                   </div>
                   <div>
                     <div class="text-2xl font-black text-slate-800">13 Modul</div>
-                    <div class="text-xs font-medium text-slate-500">Materi Lengkap</div>
+                    <div class="text-xs font-medium text-slate-500">Materi Lengkap[cite: 1]</div>
                   </div>
                 </div>
               </div>
 
-              <!-- Menu Akses Cepat Kategori -->
+              <!-- Menu Akses Cepat Kategori Lengkap (Semua Materi Ditampilkan) -->
               <div class="space-y-4">
                 <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-                  <i class="fa-solid fa-compass text-rose-500"></i> Pilih Kategori Belajar
+                  <i class="fa-solid fa-compass text-rose-500"></i> Pilih Kategori Belajar Lengkap
                 </h3>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                   
-                  <div @click="switchTab('kanji_page')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-300 transition cursor-pointer group">
-                    <div class="flex items-center justify-between mb-3">
-                      <span class="w-10 h-10 bg-rose-50 text-rose-600 rounded-lg flex items-center justify-center font-bold text-lg">漢</span>
-                      <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-rose-500 transition-transform group-hover:translate-x-1"></i>
-                    </div>
-                    <h4 class="font-bold text-slate-800 mb-1">Kanji Dasar</h4>
-                    <p class="text-xs text-slate-500" x-text="materiData.kanji_list.length + ' Kartu Kanji N5'"></p>
-                  </div>
-
                   <div @click="switchTab('hiragana_page')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-300 transition cursor-pointer group">
                     <div class="flex items-center justify-between mb-3">
                       <span class="w-10 h-10 bg-rose-50 text-rose-600 rounded-lg flex items-center justify-center font-bold text-lg">あ</span>
@@ -279,6 +270,15 @@
                     </div>
                     <h4 class="font-bold text-slate-800 mb-1">Huruf Katakana</h4>
                     <p class="text-xs text-slate-500">Dasar, Dakuon & Tambahan Khusus</p>
+                  </div>
+
+                  <div @click="switchTab('kanji_page')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-300 transition cursor-pointer group">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="w-10 h-10 bg-rose-50 text-rose-600 rounded-lg flex items-center justify-center font-bold text-lg">漢</span>
+                      <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-rose-500 transition-transform group-hover:translate-x-1"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 mb-1">Kanji Dasar</h4>
+                    <p class="text-xs text-slate-500" x-text="materiData.kanji_list.length + ' Kartu Kanji N5'"></p>
                   </div>
 
                   <div @click="switchTab('kata_bilangan')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-300 transition cursor-pointer group">
@@ -299,13 +299,76 @@
                     <p class="text-xs text-slate-500">Hari, Pagi, Malam, Minggu, Bulan, dll.</p>
                   </div>
 
+                  <div @click="switchTab('penanda_waktu')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-300 transition cursor-pointer group">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center font-bold text-lg"><i class="fa-regular fa-calendar-days"></i></span>
+                      <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-rose-500 transition-transform group-hover:translate-x-1"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 mb-1">Penanda Waktu</h4>
+                    <p class="text-xs text-slate-500">Jam, Menit, Hari, Tanggal & Bulan</p>
+                  </div>
+
+                  <div @click="switchTab('kata_keterangan')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-300 transition cursor-pointer group">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="w-10 h-10 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-list-check"></i></span>
+                      <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-rose-500 transition-transform group-hover:translate-x-1"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 mb-1">Kata Keterangan</h4>
+                    <p class="text-xs text-slate-500" x-text="materiData.kata_keterangan.length + ' Kosakata (Fukushi)'"></p>
+                  </div>
+
                   <div @click="switchTab('kata_benda')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-300 transition cursor-pointer group">
                     <div class="flex items-center justify-between mb-3">
-                      <span class="w-10 h-10 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-box"></i></span>
+                      <span class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-box"></i></span>
                       <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-rose-500 transition-transform group-hover:translate-x-1"></i>
                     </div>
                     <h4 class="font-bold text-slate-800 mb-1">Kata Benda</h4>
                     <p class="text-xs text-slate-500" x-text="materiData.kata_benda.length + ' Kosakata (Meishi)'"></p>
+                  </div>
+
+                  <div @click="switchTab('salam')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-300 transition cursor-pointer group">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="w-10 h-10 bg-rose-50 text-rose-600 rounded-lg flex items-center justify-center font-bold text-lg"><i class="fa-regular fa-handshake"></i></span>
+                      <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-rose-500 transition-transform group-hover:translate-x-1"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 mb-1">Salam (Aisatsu)</h4>
+                    <p class="text-xs text-slate-500" x-text="materiData.salam.length + ' Ungkapan Salam'"></p>
+                  </div>
+
+                  <div @click="switchTab('kazoku')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-300 transition cursor-pointer group">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="w-10 h-10 bg-teal-50 text-teal-600 rounded-lg flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-users"></i></span>
+                      <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-rose-500 transition-transform group-hover:translate-x-1"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 mb-1">Kazoku</h4>
+                    <p class="text-xs text-slate-500" x-text="materiData.kazoku.length + ' Anggota Keluarga'"></p>
+                  </div>
+
+                  <div @click="switchTab('kk_gol1')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-300 transition cursor-pointer group">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="w-10 h-10 bg-orange-50 text-amber-600 rounded-lg flex items-center justify-center font-bold text-lg">G1</span>
+                      <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-rose-500 transition-transform group-hover:translate-x-1"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 mb-1">Kata Kerja Gol I</h4>
+                    <p class="text-xs text-slate-500" x-text="materiData.kk_gol1.length + ' Kata Kerja'"></p>
+                  </div>
+
+                  <div @click="switchTab('kk_gol2')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-300 transition cursor-pointer group">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="w-10 h-10 bg-sky-50 text-sky-600 rounded-lg flex items-center justify-center font-bold text-lg">G2</span>
+                      <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-rose-500 transition-transform group-hover:translate-x-1"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 mb-1">Kata Kerja Gol II</h4>
+                    <p class="text-xs text-slate-500" x-text="materiData.kk_gol2.length + ' Kata Kerja'"></p>
+                  </div>
+
+                  <div @click="switchTab('kk_gol3')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-300 transition cursor-pointer group">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="w-10 h-10 bg-pink-50 text-pink-600 rounded-lg flex items-center justify-center font-bold text-lg">G3</span>
+                      <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-rose-500 transition-transform group-hover:translate-x-1"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 mb-1">Kata Kerja Gol III</h4>
+                    <p class="text-xs text-slate-500" x-text="materiData.kk_gol3.length + ' Kata Kerja'"></p>
                   </div>
 
                 </div>
@@ -588,7 +651,7 @@
             </div>
           </template>
 
-          <!-- Halaman Latihan Kotoba -->
+          <!-- Halaman Uji Pemahaman -->
           <template x-if="activeTab === 'latihan'">
             <div class="space-y-6">
               
@@ -596,7 +659,7 @@
               <template x-if="quizStage === 'setup'">
                 <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-6">
                   <div>
-                    <h2 class="text-xl font-bold text-slate-800 mb-1">Pengaturan Latihan Kotoba</h2>
+                    <h2 class="text-xl font-bold text-slate-800 mb-1">Pengaturan Uji Pemahaman</h2>
                     <p class="text-sm text-slate-500">Pilih materi, waktu, dan format kuis sebelum memulai.</p>
                   </div>
 
@@ -657,12 +720,12 @@
                           :class="selectedCategories.length === 0 ? 'bg-slate-300 cursor-not-allowed' : 'bg-rose-600 hover:bg-rose-700 text-white'"
                           class="w-full py-3.5 rounded-xl font-bold transition shadow-md flex items-center justify-center gap-2">
                     <i class="fa-solid fa-play"></i>
-                    <span>Mulai Latihan</span>
+                    <span>Mulai Uji Pemahaman</span>
                   </button>
                 </div>
               </template>
 
-              <!-- STAGE 2: PENGERJAAN KUIS -->
+              <!-- STAGE 2: PENGERJAAN KUIS (DENGAN TOMBOL SELESAI UJIAN) -->
               <template x-if="quizStage === 'active'">
                 <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-6">
                   
@@ -672,10 +735,16 @@
                       Soal <span class="text-rose-600 font-bold" x-text="currentQuestionIndex + 1"></span> / <span x-text="quizQuestions.length"></span>
                     </div>
 
-                    <!-- Timer Bar -->
-                    <div class="flex items-center gap-2 font-mono text-sm font-bold" :class="timeLeft <= 10 && quizTimeOption > 0 ? 'text-rose-600 animate-pulse' : 'text-slate-700'">
-                      <i class="fa-regular fa-clock"></i>
-                      <span x-text="quizTimeOption > 0 ? formatTime(timeLeft) : 'Tanpa Batas'"></span>
+                    <!-- Tombol Selesai Ujian & Timer -->
+                    <div class="flex items-center gap-4">
+                      <button @click="finishQuiz()" class="px-3 py-1 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold rounded-lg transition shadow-sm flex items-center gap-1.5">
+                        <i class="fa-solid fa-flag-checkered"></i> Selesai Ujian
+                      </button>
+
+                      <div class="flex items-center gap-2 font-mono text-sm font-bold" :class="timeLeft <= 10 && quizTimeOption > 0 ? 'text-rose-600 animate-pulse' : 'text-slate-700'">
+                        <i class="fa-regular fa-clock"></i>
+                        <span x-text="quizTimeOption > 0 ? formatTime(timeLeft) : 'Tanpa Batas'"></span>
+                      </div>
                     </div>
                   </div>
 
@@ -730,8 +799,8 @@
                     <div class="w-16 h-16 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto text-2xl font-bold">
                       <i class="fa-solid fa-trophy"></i>
                     </div>
-                    <h2 class="text-2xl font-bold text-slate-800">Latihan Selesai!</h2>
-                    <p class="text-sm text-slate-500">Berikut adalah rekapitulasi hasil latihan kamu.</p>
+                    <h2 class="text-2xl font-bold text-slate-800">Uji Pemahaman Selesai!</h2>
+                    <p class="text-sm text-slate-500">Berikut adalah rekapitulasi hasil ujian kamu.</p>
                   </div>
 
                   <!-- Skor Card -->
@@ -760,7 +829,7 @@
                   <div class="pt-4">
                     <button @click="resetQuiz()" class="px-8 py-3 bg-rose-600 text-white font-bold rounded-xl hover:bg-rose-700 transition shadow-md inline-flex items-center gap-2">
                       <i class="fa-solid fa-rotate-right"></i>
-                      <span>Coba Lagi</span>
+                      <span>Ulangi Ujian</span>
                     </button>
                   </div>
 
@@ -781,7 +850,7 @@
     function kotobaApp() {
       return {
         sidebarOpen: false,
-        kotobaDropdown: true,
+        kotobaDropdown: false, // Default tertutup saat web pertama kali dibuka
         kataKerjaDropdown: true,
         activeTab: 'dashboard',
 
@@ -842,7 +911,7 @@
             'kk_gol1': 'Kata Kerja Golongan I',
             'kk_gol2': 'Kata Kerja Golongan II',
             'kk_gol3': 'Kata Kerja Golongan III',
-            'latihan': 'Latihan Kotoba'
+            'latihan': 'Uji Pemahaman Kotoba'
           };
           return titles[tab] || '';
         },
@@ -1537,7 +1606,7 @@
                 { indonesia: "Bulan lalu", romaji: "sen getsu", hiragana: "せんげつ", katakana: "センゲツ" },
                 { indonesia: "Bulan ini", romaji: "kon getsu", hiragana: "こんげつ", katakana: "コンゲツ" },
                 { indonesia: "Bulan depan", romaji: "rai getsu", hiragana: "らいげつ", katakana: "ライゲツ" },
-                { indonesia: "Dua bulan lagi", romaji: "sa rai getsu", hiragana: "さらいげつ", katakana: "サライげつ" },
+                { indonesia: "Dua bulan lagi", romaji: "sa rai getsu", hiragana: "さらいげつ", katakana: "サライゲツ" },
                 { indonesia: "Setiap bulan", romaji: "maitsuki", hiragana: "まいつき", katakana: "マイツキ" }
               ]
             },
@@ -2206,7 +2275,7 @@
             { indonesia: "Dinas", romaji: "Shuccousuru", hiragana: "しゅっちょうする", katakana: "シュッチョウスル" },
             { indonesia: "Memperkenalkan", romaji: "Shoukaisuru", hiragana: "しょうかいする", katakana: "ショウカイスル" },
             { indonesia: "Makan (bersama)", romaji: "Shokujisuru", hiragana: "しょくじする", katakana: "ショウジスル" },
-            { indonesia: "Menghawatirkan, cemas", romaji: "Shinpaisuru", hiragana: "しんぱいする", katakana: "シン파イスル" },
+            { indonesia: "Menghawatirkan, cemas", romaji: "Shinpaisuru", hiragana: "しんぱいする", katakana: "シンパイスル" },
             { indonesia: "Mencuci pakaian", romaji: "Sentakusuru", hiragana: "せんたくする", katakana: "センタクスル" },
             { indonesia: "Membersihkan", romaji: "Soujisuru", hiragana: "そうじする", katakana: "ソウジスル" },
             { indonesia: "Membawa datang, mengajak datang", romaji: "Tsuretekuru", hiragana: "つれてくる", katakana: "ツレテクル" },
