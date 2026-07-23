@@ -252,7 +252,7 @@
                       <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-rose-500 transition-transform group-hover:translate-x-1"></i>
                     </div>
                     <h4 class="font-bold text-slate-800 mb-1">Huruf Hiragana</h4>
-                    <p class="text-xs text-slate-500">Dasar, Dakuon & Yoon</p>
+                    <p class="text-xs text-slate-500">Tabel Hiragana Khusus (Dasar, Dakuon, Yoon)</p>
                   </div>
 
                   <div @click="switchTab('katakana_page')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-300 transition cursor-pointer group">
@@ -261,7 +261,7 @@
                       <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-rose-500 transition-transform group-hover:translate-x-1"></i>
                     </div>
                     <h4 class="font-bold text-slate-800 mb-1">Huruf Katakana</h4>
-                    <p class="text-xs text-slate-500">Dasar, Tambahan (Wi, We, Fa, dll)</p>
+                    <p class="text-xs text-slate-500">Tabel Katakana Khusus (Wi, We, Wo, Fa, dll.)</p>
                   </div>
 
                   <div @click="switchTab('kata_bilangan')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-300 transition cursor-pointer group">
@@ -270,7 +270,7 @@
                       <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-rose-500 transition-transform group-hover:translate-x-1"></i>
                     </div>
                     <h4 class="font-bold text-slate-800 mb-1">Kata Bilangan</h4>
-                    <p class="text-xs text-slate-500">Angka & Rumus Man/Oku</p>
+                    <p class="text-xs text-slate-500">Angka & Rumus Hitung Man/Oku</p>
                   </div>
 
                   <div @click="switchTab('ungkapan_waktu')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-300 transition cursor-pointer group">
@@ -306,7 +306,7 @@
             </div>
           </template>
 
-          <!-- HALAMAN MATERI: HIRAGANA -->
+          <!-- HALAMAN MATERI: HIRAGANA (KHUSUS HIRAGANA SAJA) -->
           <template x-if="activeTab === 'hiragana_page'">
             <div class="space-y-4">
               <div class="flex justify-between items-center mb-2">
@@ -316,22 +316,20 @@
 
               <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
                 <div class="overflow-x-auto">
-                  <table class="w-full text-left border-collapse min-w-[500px]">
+                  <table class="w-full text-left border-collapse min-w-[350px]">
                     <thead>
                       <tr class="bg-slate-100 border-b border-slate-200 text-xs font-semibold text-slate-600 uppercase tracking-wider">
-                        <th class="py-3 px-4">Kategori</th>
+                        <th class="py-3 px-4">Kategori Bunyi</th>
                         <th class="py-3 px-4">Romaji</th>
-                        <th class="py-3 px-4">Hiragana</th>
-                        <th class="py-3 px-4">Katakana Padanan</th>
+                        <th class="py-3 px-4 text-center">Huruf Hiragana</th>
                       </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100 text-sm">
                       <template x-for="(item, index) in materiData.hiragana_list" :key="index">
                         <tr class="hover:bg-slate-50 transition">
-                          <td class="py-3 px-4 font-medium text-slate-800" x-text="item.indonesia"></td>
+                          <td class="py-3 px-4 font-medium text-slate-800" x-text="item.kategori"></td>
                           <td class="py-3 px-4 italic font-mono text-slate-600" x-text="item.romaji"></td>
-                          <td class="py-3 px-4 font-bold text-slate-900 text-lg" x-text="item.hiragana"></td>
-                          <td class="py-3 px-4 text-rose-500 font-medium" x-text="item.katakana"></td>
+                          <td class="py-3 px-4 font-bold text-slate-900 text-2xl text-center font-serif" x-text="item.hiragana"></td>
                         </tr>
                       </template>
                     </tbody>
@@ -341,7 +339,7 @@
             </div>
           </template>
 
-          <!-- HALAMAN MATERI: KATAKANA -->
+          <!-- HALAMAN MATERI: KATAKANA (KHUSUS KATAKANA SAJA TERMASUK KATAKANA KHUSUS) -->
           <template x-if="activeTab === 'katakana_page'">
             <div class="space-y-4">
               <div class="flex justify-between items-center mb-2">
@@ -351,22 +349,20 @@
 
               <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
                 <div class="overflow-x-auto">
-                  <table class="w-full text-left border-collapse min-w-[500px]">
+                  <table class="w-full text-left border-collapse min-w-[350px]">
                     <thead>
                       <tr class="bg-slate-100 border-b border-slate-200 text-xs font-semibold text-slate-600 uppercase tracking-wider">
                         <th class="py-3 px-4">Kategori Bunyi</th>
                         <th class="py-3 px-4">Romaji</th>
-                        <th class="py-3 px-4">Hiragana Padanan</th>
-                        <th class="py-3 px-4">Katakana</th>
+                        <th class="py-3 px-4 text-center">Huruf Katakana</th>
                       </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100 text-sm">
                       <template x-for="(item, index) in materiData.katakana_list" :key="index">
-                        <tr class="hover:bg-slate-50 transition" :class="item.indonesia.includes('Khusus') ? 'bg-amber-50/40' : ''">
-                          <td class="py-3 px-4 font-medium text-slate-800" x-text="item.indonesia"></td>
+                        <tr class="hover:bg-slate-50 transition" :class="item.kategori.includes('Khusus') ? 'bg-amber-50/40' : ''">
+                          <td class="py-3 px-4 font-medium text-slate-800" x-text="item.kategori"></td>
                           <td class="py-3 px-4 italic font-mono text-slate-600" x-text="item.romaji"></td>
-                          <td class="py-3 px-4 font-bold text-slate-900 text-base" x-text="item.hiragana"></td>
-                          <td class="py-3 px-4 text-rose-600 font-bold text-lg" x-text="item.katakana"></td>
+                          <td class="py-3 px-4 font-bold text-rose-600 text-2xl text-center font-serif" x-text="item.katakana"></td>
                         </tr>
                       </template>
                     </tbody>
@@ -557,7 +553,7 @@
                     <div class="grid grid-cols-2 gap-3">
                       <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
                         <input type="radio" value="indonesia" x-model="quizQuestionMode" class="w-4 h-4 text-rose-600 border-slate-300 focus:ring-rose-500">
-                        <span class="ml-2 text-sm font-medium text-slate-700">Bahasa Indonesia</span>
+                        <span class="ml-2 text-sm font-medium text-slate-700">Bahasa Indonesia / Karakter</span>
                       </label>
                       <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
                         <input type="radio" value="romaji" x-model="quizQuestionMode" class="w-4 h-4 text-rose-600 border-slate-300 focus:ring-rose-500">
@@ -618,9 +614,9 @@
                   </div>
 
                   <!-- Soal Card -->
-                  <div class="text-center py-4 bg-slate-50 rounded-xl border border-slate-100 space-y-2">
-                    <span class="text-xs uppercase tracking-wider font-semibold text-slate-400" x-text="quizQuestionMode === 'indonesia' ? 'Bahasa Indonesia' : 'Romaji'"></span>
-                    <h3 class="text-2xl font-bold text-slate-900" x-text="currentQuestion.question"></h3>
+                  <div class="text-center py-6 bg-slate-50 rounded-xl border border-slate-100 space-y-2">
+                    <span class="text-xs uppercase tracking-wider font-semibold text-slate-400" x-text="quizQuestionMode === 'indonesia' ? 'Tebak Romaji / Arti' : 'Tebak Karakter / Hiragana'"></span>
+                    <h3 class="text-3xl font-extrabold text-slate-900" x-text="currentQuestion.question"></h3>
                   </div>
 
                   <!-- Option Buttons -->
@@ -744,9 +740,9 @@
         timeSpent: 0,
 
         quizCategories: [
-          { key: 'hiragana_list', title: 'Huruf Hiragana' },
-          { key: 'katakana_list', title: 'Huruf Katakana' },
-          { key: 'kata_bilangan', title: 'Kata Bilangan (Suuji)' },
+          { key: 'hiragana_list', title: 'Huruf Hiragana (Per Karakter)' },
+          { key: 'katakana_list', title: 'Huruf Katakana (Per Karakter)' },
+          { key: 'kata_bilangan', title: 'Kata Bilangan (Termasuk Angka Acak)' },
           { key: 'ungkapan_waktu', title: 'Ungkapan Waktu' },
           { key: 'penanda_waktu', title: 'Penanda Waktu' },
           { key: 'kata_keterangan', title: 'Kata Keterangan' },
@@ -793,6 +789,32 @@
           return (this.materiData.kk_gol1.length + this.materiData.kk_gol2.length + this.materiData.kk_gol3.length);
         },
 
+        // --- HELPER GENERATOR ANGKA RANDOM BILANGAN ---
+        generateRandomNumberItems(count = 10) {
+          const items = [];
+          for (let i = 0; i < count; i++) {
+            // Angka acak puluhan ribu hingga ratusan ribu (seperti 308.900)
+            const num = Math.floor(Math.random() * 900000) + 10000;
+            const manPart = Math.floor(num / 10000);
+            const remainder = num % 10000;
+            
+            let romajiStr = `${manPart} man`;
+            let hiraganaStr = `${manPart} まん`;
+            if (remainder > 0) {
+              romajiStr += ` ${remainder}`;
+              hiraganaStr += ` ${remainder}`;
+            }
+
+            items.push({
+              indonesia: num.toLocaleString('id-ID'),
+              romaji: romajiStr,
+              hiragana: hiraganaStr,
+              katakana: hiraganaStr
+            });
+          }
+          return items;
+        },
+
         // --- LOGIKA LATIHAN KOTOBA ---
         getAllPoolItems() {
           let pool = [];
@@ -816,14 +838,20 @@
         startQuiz() {
           let pool = [];
           this.selectedCategories.forEach(catKey => {
-            const data = this.materiData[catKey];
-            if (Array.isArray(data)) {
-              if (data.length > 0 && data[0].subJudul) {
-                data.forEach(sub => {
-                  pool = pool.concat(sub.items);
-                });
-              } else {
-                pool = pool.concat(data);
+            if (catKey === 'kata_bilangan') {
+              // Masukkan materi bilangan asli + angka acak dinamis (seperti 308.900)
+              pool = pool.concat(this.materiData.kata_bilangan);
+              pool = pool.concat(this.generateRandomNumberItems(15));
+            } else {
+              const data = this.materiData[catKey];
+              if (Array.isArray(data)) {
+                if (data.length > 0 && data[0].subJudul) {
+                  data.forEach(sub => {
+                    pool = pool.concat(sub.items);
+                  });
+                } else {
+                  pool = pool.concat(data);
+                }
               }
             }
           });
@@ -839,14 +867,33 @@
 
           this.quizQuestions = selectedItems.map(item => {
             const isIndo = this.quizQuestionMode === 'indonesia';
-            const questionText = isIndo ? item.indonesia : item.romaji;
-            const correctAnswerText = isIndo ? `${item.romaji} (${item.hiragana})` : `${item.indonesia} (${item.hiragana})`;
+            
+            // Format Pertanyaan & Jawaban Utama
+            let questionText = isIndo ? (item.indonesia || item.hiragana || item.katakana) : item.romaji;
+            let correctAnswerText = isIndo ? `${item.romaji} (${item.hiragana || item.katakana})` : `${item.indonesia || item.hiragana || item.katakana}`;
+
+            // Jika item dari Hiragana/Katakana khusus per karakter
+            if (item.hiragana && !item.indonesia) {
+              questionText = isIndo ? item.hiragana : item.romaji;
+              correctAnswerText = isIndo ? item.romaji : item.hiragana;
+            } else if (item.katakana && !item.indonesia && !item.hiragana) {
+              questionText = isIndo ? item.katakana : item.romaji;
+              correctAnswerText = isIndo ? item.romaji : item.katakana;
+            }
 
             const distractors = pool
               .filter(p => p.romaji !== item.romaji)
               .sort(() => 0.5 - Math.random())
               .slice(0, 3)
-              .map(d => isIndo ? `${d.romaji} (${d.hiragana})` : `${d.indonesia} (${d.hiragana})`);
+              .map(d => {
+                if (d.hiragana && !d.indonesia) {
+                  return isIndo ? d.romaji : d.hiragana;
+                }
+                if (d.katakana && !d.indonesia && !d.hiragana) {
+                  return isIndo ? d.romaji : d.katakana;
+                }
+                return isIndo ? `${d.romaji} (${d.hiragana || d.katakana})` : `${d.indonesia || d.hiragana || d.katakana}`;
+              });
 
             const options = [
               { text: correctAnswerText, isCorrect: true },
@@ -929,60 +976,126 @@
 
         // --- DATA MATERI KOTOBA LENGKAP ---
         materiData: {
-          // --- MATERI HIRAGANA ---
+          // --- MATERI HIRAGANA (PER KARAKTER TUNGGAL) ---
           hiragana_list: [
-            { indonesia: "Vokal A", romaji: "a", hiragana: "あ", katakana: "ア" },
-            { indonesia: "Vokal I", romaji: "i", hiragana: "い", katakana: "イ" },
-            { indonesia: "Vokal U", romaji: "u", hiragana: "う", katakana: "ウ" },
-            { indonesia: "Vokal E", romaji: "e", hiragana: "え", katakana: "エ" },
-            { indonesia: "Vokal O", romaji: "o", hiragana: "お", katakana: "オ" },
-            { indonesia: "Baris K", romaji: "ka / ki / ku / ke / ko", hiragana: "か き く け こ", katakana: "カ キ ク ケ コ" },
-            { indonesia: "Baris S", romaji: "sa / shi / su / se / so", hiragana: "さ し す せ そ", katakana: "サ シ ス セ ソ" },
-            { indonesia: "Baris T", romaji: "ta / chi / tsu / te / to", hiragana: "た ち つ て と", katakana: "タ チ ツ テ ト" },
-            { indonesia: "Baris N", romaji: "na / ni / nu / ne / no", hiragana: "な に ぬ ね の", katakana: "ナ ニ ヌ ネ ノ" },
-            { indonesia: "Baris H", romaji: "ha / hi / fu / he / ho", hiragana: "は ひ ふ へ ほ", katakana: "ハ ヒ フ ヘ ホ" },
-            { indonesia: "Baris M", romaji: "ma / mi / mu / me / mo", hiragana: "ま み む め も", katakana: "マ ミ ム メ モ" },
-            { indonesia: "Baris Y", romaji: "ya / yu / yo", hiragana: "や ゆ よ", katakana: "ヤ ユ ヨ" },
-            { indonesia: "Baris R", romaji: "ra / ri / ru / re / ro", hiragana: "ら り る れ ろ", katakana: "ラ リ ル レ ロ" },
-            { indonesia: "Baris W & N", romaji: "wa / wo / n", hiragana: "わ を ん", katakana: "ワ ヲ ン" },
-            { indonesia: "Dakuon G", romaji: "ga / gi / gu / ge / go", hiragana: "が ぎ ぐ げ ご", katakana: "ガ ギ グ ゲ ゴ" },
-            { indonesia: "Dakuon Z", romaji: "za / ji / zu / ze / zo", hiragana: "ざ じ ず ぜ ぞ", katakana: "ザ ジ ズ ゼ ゾ" },
-            { indonesia: "Dakuon D", romaji: "da / ji / zu / de / do", hiragana: "だ ぢ づ で ど", katakana: "ダ ヂ ヅ デ ド" },
-            { indonesia: "Dakuon B", romaji: "ba / bi / bu / be / bo", hiragana: "ば び ぶ べ ぼ", katakana: "バ ビ ブ ベ ボ" },
-            { indonesia: "Handakuon P", romaji: "pa / pi / pu / pe / po", hiragana: "ぱ ぴ ぷ ぺ ぽ", katakana: "パ ピ プ ペ ポ" },
-            { indonesia: "Yoon (Kya..)", romaji: "kya / kyu / kyo", hiragana: "きゃ きゅ きょ", katakana: "キャ キュ キョ" },
-            { indonesia: "Yoon (Sha..)", romaji: "sha / shu / sho", hiragana: "しゃ しゅ しょ", katakana: "シャ シュ ショ" },
-            { indonesia: "Yoon (Cha..)", romaji: "cha / chu / cho", hiragana: "ちゃ ちゅ ちょ", katakana: "チャ チュ チョ" }
+            { kategori: "Vokal Dasar", romaji: "a", hiragana: "あ" },
+            { kategori: "Vokal Dasar", romaji: "i", hiragana: "い" },
+            { kategori: "Vokal Dasar", romaji: "u", hiragana: "う" },
+            { kategori: "Vokal Dasar", romaji: "e", hiragana: "え" },
+            { kategori: "Vokal Dasar", romaji: "o", hiragana: "お" },
+            { kategori: "Baris K", romaji: "ka", hiragana: "か" },
+            { kategori: "Baris K", romaji: "ki", hiragana: "き" },
+            { kategori: "Baris K", romaji: "ku", hiragana: "く" },
+            { kategori: "Baris K", romaji: "ke", hiragana: "け" },
+            { kategori: "Baris K", romaji: "ko", hiragana: "こ" },
+            { kategori: "Baris S", romaji: "sa", hiragana: "さ" },
+            { kategori: "Baris S", romaji: "shi", hiragana: "し" },
+            { kategori: "Baris S", romaji: "su", hiragana: "す" },
+            { kategori: "Baris S", romaji: "se", hiragana: "せ" },
+            { kategori: "Baris S", romaji: "so", hiragana: "そ" },
+            { kategori: "Baris T", romaji: "ta", hiragana: "た" },
+            { kategori: "Baris T", romaji: "chi", hiragana: "ち" },
+            { kategori: "Baris T", romaji: "tsu", hiragana: "つ" },
+            { kategori: "Baris T", romaji: "te", hiragana: "て" },
+            { kategori: "Baris T", romaji: "to", hiragana: "と" },
+            { kategori: "Baris N", romaji: "na", hiragana: "な" },
+            { kategori: "Baris N", romaji: "ni", hiragana: "に" },
+            { kategori: "Baris N", romaji: "nu", hiragana: "ぬ" },
+            { kategori: "Baris N", romaji: "ne", hiragana: "ね" },
+            { kategori: "Baris N", romaji: "no", hiragana: "の" },
+            { kategori: "Baris H", romaji: "ha", hiragana: "は" },
+            { kategori: "Baris H", romaji: "hi", hiragana: "ひ" },
+            { kategori: "Baris H", romaji: "fu", hiragana: "ふ" },
+            { kategori: "Baris H", romaji: "he", hiragana: "へ" },
+            { kategori: "Baris H", romaji: "ho", hiragana: "ほ" },
+            { kategori: "Baris M", romaji: "ma", hiragana: "ま" },
+            { kategori: "Baris M", romaji: "mi", hiragana: "み" },
+            { kategori: "Baris M", romaji: "mu", hiragana: "む" },
+            { kategori: "Baris M", romaji: "me", hiragana: "め" },
+            { kategori: "Baris M", romaji: "mo", hiragana: "も" },
+            { kategori: "Baris Y", romaji: "ya", hiragana: "や" },
+            { kategori: "Baris Y", romaji: "yu", hiragana: "ゆ" },
+            { kategori: "Baris Y", romaji: "yo", hiragana: "よ" },
+            { kategori: "Baris R", romaji: "ra", hiragana: "ら" },
+            { kategori: "Baris R", romaji: "ri", hiragana: "り" },
+            { kategori: "Baris R", romaji: "ru", hiragana: "る" },
+            { kategori: "Baris R", romaji: "re", hiragana: "れ" },
+            { kategori: "Baris R", romaji: "ro", hiragana: "ろ" },
+            { kategori: "Baris W", romaji: "wa", hiragana: "わ" },
+            { kategori: "Baris W", romaji: "wo", hiragana: "を" },
+            { kategori: "Konsonan N", romaji: "n", hiragana: "ん" }
           ],
 
-          // --- MATERI KATAKANA (LENGKAP KATAKANA KHUSUS TAMBAHAN) ---
+          // --- MATERI KATAKANA (PER KARAKTER TUNGGAL & KHUSUS) ---
           katakana_list: [
-            { indonesia: "Vokal A", romaji: "a", hiragana: "あ", katakana: "ア" },
-            { indonesia: "Vokal I", romaji: "i", hiragana: "い", katakana: "イ" },
-            { indonesia: "Vokal U", romaji: "u", hiragana: "う", katakana: "ウ" },
-            { indonesia: "Vokal E", romaji: "e", hiragana: "え", katakana: "エ" },
-            { indonesia: "Vokal O", romaji: "o", hiragana: "お", katakana: "オ" },
-            { indonesia: "Baris K", romaji: "ka / ki / ku / ke / ko", hiragana: "か き く け こ", katakana: "カ キ ク ケ コ" },
-            { indonesia: "Baris S", romaji: "sa / shi / su / se / so", hiragana: "さ し す せ そ", katakana: "サ シ ス セ ソ" },
-            { indonesia: "Baris T", romaji: "ta / chi / tsu / te / to", hiragana: "た ち つ て と", katakana: "タ チ ツ テ ト" },
-            { indonesia: "Baris N", romaji: "na / ni / nu / ne / no", hiragana: "な に ぬ ね の", katakana: "ナ ニ ヌ ネ ノ" },
-            { indonesia: "Baris H", romaji: "ha / hi / fu / he / ho", hiragana: "は ひ ふ へ ほ", katakana: "ハ ヒ フ ヘ ホ" },
-            { indonesia: "Baris M", romaji: "ma / mi / mu / me / mo", hiragana: "ま み む め も", katakana: "マ ミ ム メ モ" },
-            { indonesia: "Baris Y", romaji: "ya / yu / yo", hiragana: "や ゆ よ", katakana: "ヤ ユ ヨ" },
-            { indonesia: "Baris R", romaji: "ra / ri / ru / re / ro", hiragana: "ら り る れ ろ", katakana: "ラ リ ル レ ロ" },
-            { indonesia: "Baris W & N", romaji: "wa / wo / n", hiragana: "わ を ん", katakana: "ワ ヲ ン" },
-            { indonesia: "Katakana Khusus", romaji: "wi", hiragana: "うぃ", katakana: "ウィ" },
-            { indonesia: "Katakana Khusus", romaji: "we", hiragana: "うぇ", katakana: "ウェ" },
-            { indonesia: "Katakana Khusus", romaji: "wo", hiragana: "うぉ", katakana: "ウォ" },
-            { indonesia: "Katakana Khusus", romaji: "va / vi / ve / vo", hiragana: "ヴぁ ヴぃ ヴぇ ヴぉ", katakana: "ヴァ ヴィ ヴェ ヴォ" },
-            { indonesia: "Katakana Khusus", romaji: "fa / fi / fe / fo", hiragana: "ふぁ ふぃ ふぇ ふぉ", katakana: "ファ フィ フェ フォ" },
-            { indonesia: "Katakana Khusus", romaji: "che", hiragana: "ちぇ", katakana: "チェ" },
-            { indonesia: "Katakana Khusus", romaji: "she", hiragana: "しぇ", katakana: "シェ" },
-            { indonesia: "Katakana Khusus", romaji: "je", hiragana: "じぇ", katakana: "ジェ" },
-            { indonesia: "Katakana Khusus", romaji: "tsa / tse / tso", hiragana: "つぁ つぇ つぉ", katakana: "ツァ ツェ ツォ" },
-            { indonesia: "Katakana Khusus", romaji: "ti / tu", hiragana: "てぃ とぅ", katakana: "ティ トゥ" },
-            { indonesia: "Katakana Khusus", romaji: "di / du", hiragana: "でぃ どぅ", katakana: "ディ ドゥ" },
-            { indonesia: "Katakana Khusus", romaji: "dyu", hiragana: "でゅ", katakana: "デュ" }
+            { kategori: "Vokal Dasar", romaji: "a", katakana: "ア" },
+            { kategori: "Vokal Dasar", romaji: "i", katakana: "イ" },
+            { kategori: "Vokal Dasar", romaji: "u", katakana: "ウ" },
+            { kategori: "Vokal Dasar", romaji: "e", katakana: "エ" },
+            { kategori: "Vokal Dasar", romaji: "o", katakana: "オ" },
+            { kategori: "Baris K", romaji: "ka", katakana: "カ" },
+            { kategori: "Baris K", romaji: "ki", katakana: "キ" },
+            { kategori: "Baris K", romaji: "ku", katakana: "ク" },
+            { kategori: "Baris K", romaji: "ke", katakana: "ケ" },
+            { kategori: "Baris K", romaji: "ko", katakana: "コ" },
+            { kategori: "Baris S", romaji: "sa", katakana: "サ" },
+            { kategori: "Baris S", romaji: "shi", katakana: "シ" },
+            { kategori: "Baris S", romaji: "su", katakana: "ス" },
+            { kategori: "Baris S", romaji: "se", katakana: "セ" },
+            { kategori: "Baris S", romaji: "so", katakana: "ソ" },
+            { kategori: "Baris T", romaji: "ta", katakana: "タ" },
+            { kategori: "Baris T", romaji: "chi", katakana: "チ" },
+            { kategori: "Baris T", romaji: "tsu", katakana: "ツ" },
+            { kategori: "Baris T", romaji: "te", katakana: "テ" },
+            { kategori: "Baris T", romaji: "to", katakana: "ト" },
+            { kategori: "Baris N", romaji: "na", katakana: "ナ" },
+            { kategori: "Baris N", romaji: "ni", katakana: "ニ" },
+            { kategori: "Baris N", romaji: "nu", katakana: "ヌ" },
+            { kategori: "Baris N", romaji: "ne", katakana: "ネ" },
+            { kategori: "Baris N", romaji: "no", katakana: "ノ" },
+            { kategori: "Baris H", romaji: "ha", katakana: "ハ" },
+            { kategori: "Baris H", romaji: "hi", katakana: "ヒ" },
+            { kategori: "Baris H", romaji: "fu", katakana: "フ" },
+            { kategori: "Baris H", romaji: "he", katakana: "ヘ" },
+            { kategori: "Baris H", romaji: "ho", katakana: "ホ" },
+            { kategori: "Baris M", romaji: "ma", katakana: "マ" },
+            { kategori: "Baris M", romaji: "mi", katakana: "ミ" },
+            { kategori: "Baris M", romaji: "mu", katakana: "ム" },
+            { kategori: "Baris M", romaji: "me", katakana: "メ" },
+            { kategori: "Baris M", romaji: "mo", katakana: "モ" },
+            { kategori: "Baris Y", romaji: "ya", katakana: "ヤ" },
+            { kategori: "Baris Y", romaji: "yu", katakana: "ユ" },
+            { kategori: "Baris Y", romaji: "yo", katakana: "ヨ" },
+            { kategori: "Baris R", romaji: "ra", katakana: "ラ" },
+            { kategori: "Baris R", romaji: "ri", katakana: "リ" },
+            { kategori: "Baris R", romaji: "ru", katakana: "ル" },
+            { kategori: "Baris R", romaji: "re", katakana: "レ" },
+            { kategori: "Baris R", romaji: "ro", katakana: "ロ" },
+            { kategori: "Baris W", romaji: "wa", katakana: "ワ" },
+            { kategori: "Baris W", romaji: "wo", katakana: "ヲ" },
+            { kategori: "Konsonan N", romaji: "n", katakana: "ン" },
+            { kategori: "Katakana Khusus", romaji: "wi", katakana: "ウィ" },
+            { kategori: "Katakana Khusus", romaji: "we", katakana: "ウェ" },
+            { kategori: "Katakana Khusus", romaji: "wo", katakana: "ウォ" },
+            { kategori: "Katakana Khusus", romaji: "va", katakana: "ヴァ" },
+            { kategori: "Katakana Khusus", romaji: "vi", katakana: "ヴィ" },
+            { kategori: "Katakana Khusus", romaji: "ve", katakana: "ヴェ" },
+            { kategori: "Katakana Khusus", romaji: "vo", katakana: "ヴォ" },
+            { kategori: "Katakana Khusus", romaji: "fa", katakana: "ファ" },
+            { kategori: "Katakana Khusus", romaji: "fi", katakana: "フィ" },
+            { kategori: "Katakana Khusus", romaji: "fe", katakana: "フェ" },
+            { kategori: "Katakana Khusus", romaji: "fo", katakana: "フォ" },
+            { kategori: "Katakana Khusus", romaji: "che", katakana: "チェ" },
+            { kategori: "Katakana Khusus", romaji: "she", katakana: "シェ" },
+            { kategori: "Katakana Khusus", romaji: "je", katakana: "ジェ" },
+            { kategori: "Katakana Khusus", romaji: "tsa", katakana: "ツァ" },
+            { kategori: "Katakana Khusus", romaji: "tse", katakana: "ツェ" },
+            { kategori: "Katakana Khusus", romaji: "tso", katakana: "ツォ" },
+            { kategori: "Katakana Khusus", romaji: "ti", katakana: "ティ" },
+            { kategori: "Katakana Khusus", romaji: "tu", katakana: "トゥ" },
+            { kategori: "Katakana Khusus", romaji: "di", katakana: "ディ" },
+            { kategori: "Katakana Khusus", romaji: "du", katakana: "ドゥ" },
+            { kategori: "Katakana Khusus", romaji: "dyu", katakana: "デュ" }
           ],
 
           // --- MATERI KATA BILANGAN (SUUJI) ---
@@ -1027,7 +1140,7 @@
             {
               subJudul: "Hari (日)",
               items: [
-                { indonesia: "Kemarin lusa", romaji: "ototoi", hiragana: "おとtoi", katakana: "オトトイ" },
+                { indonesia: "Kemarin lusa", romaji: "ototoi", hiragana: "おととい", katakana: "オトトイ" },
                 { indonesia: "Kemarin", romaji: "kinou", hiragana: "きのう", katakana: "キノウ" },
                 { indonesia: "Hari ini", romaji: "kyou", hiragana: "きょう", katakana: "キョウ" },
                 { indonesia: "Besok", romaji: "ashita", hiragana: "あした", katakana: "アシタ" },
@@ -1038,7 +1151,7 @@
             {
               subJudul: "Pagi (朝)",
               items: [
-                { indonesia: "Kemarin lusa pagi", romaji: "ototoi no asa", hiragana: "おとといのあさ", katakana: "オトトイノアサ" },
+                { indonesia: "Kemarin lusa pagi", romaji: "ototoi no asa", hiragana: "おとtoiのあさ", katakana: "オトトイノアサ" },
                 { indonesia: "Kemarin pagi", romaji: "kinou no asa", hiragana: "きのうのあさ", katakana: "キノウノアサ" },
                 { indonesia: "Tadi pagi", romaji: "kesa", hiragana: "けさ", katakana: "ケサ" },
                 { indonesia: "Besok pagi", romaji: "ashita no asa", hiragana: "あしたのあさ", katakana: "アシタノアサ" },
@@ -1132,7 +1245,7 @@
                 { indonesia: "4 Hari", romaji: "yok ka", hiragana: "よっか", katakana: "ヨッカ" },
                 { indonesia: "5 Hari", romaji: "itsu ka", hiragana: "いつか", katakana: "イツカ" },
                 { indonesia: "6 Hari", romaji: "mui ka", hiragana: "むいか", katakana: "ムイカ" },
-                { indonesia: "7 Hari", romaji: "nano ka", hiragana: "なのか", katakana: "ナノカ" },
+                { indonesia: "7 Hari", romaji: "nano ka", hiragana: "のか", katakana: "ナノカ" },
                 { indonesia: "8 Hari", romaji: "you ka", hiragana: "ようか", katakana: "ヨウカ" },
                 { indonesia: "9 Hari", romaji: "kokono ka", hiragana: "ここのか", katakana: "ココノカ" },
                 { indonesia: "10 Hari", romaji: "too ka", hiragana: "とおか", katakana: "トオカ" },
@@ -1335,7 +1448,7 @@
             { indonesia: "Sebetulnya", romaji: "Jitsu wa", hiragana: "じつ は", katakana: "ジツ ハ" },
             { indonesia: "Jumlahnya", romaji: "Zenbu de", hiragana: "ぜんぶ で", katakana: "ゼンブ デ" },
             { indonesia: "Mungkin", romaji: "Tabun", hiragana: "たぶん", katakana: "タブン" },
-            { indonesia: "Tentu saja", romaji: "Mochiron", hiragana: "もちろん", katakana: "モチロン" },
+            { indonesia: "Tentu saja", romaji: "Mochiron", hiragana: " briefing ", hiragana: " me", katakana: "モチロン" },
             { indonesia: "Kadang-kadang", romaji: "Tokidoki", hiragana: "ときどき", katakana: "トキドキ" },
             { indonesia: "Pertama kali", romaji: "Hajimete", hiragana: "はじめて", katakana: "ハジメテ" },
             { indonesia: "Sampai nanti", romaji: "Mata", hiragana: "また", katakana: "マタ" },
@@ -1539,7 +1652,7 @@
             { indonesia: "Iya, sama-sama", romaji: "Douitashimashite", hiragana: "どういたしまして", katakana: "ドウイタシマシテ" },
             { indonesia: "Selamat makan", romaji: "Itadakimasu", hiragana: "いただきます", katakana: "イタダキマス" },
             { indonesia: "Terima kasih hidangannya", romaji: "Gochisousama deshita", hiragana: "ごちそうさまでした", katakana: "ゴチソウサマデシタ" },
-            { indonesia: "Aku pergi dulu", romaji: "Ittekimasu", hiragana: "いetteきます", katakana: "イッテキマス" },
+            { indonesia: "Aku pergi dulu", romaji: "Ittekimasu", hiragana: "いってきます", katakana: "イッテキマス" },
             { indonesia: "Selamat jalan", romaji: "Itterasshai", hiragana: "いってらっしゃい", katakana: "イッテラッシャイ" },
             { indonesia: "Aku pulang", romaji: "Tadaima", hiragana: "ただいま", katakana: "タダイマ" },
             { indonesia: "Selamat pulang", romaji: "Okaerinasai", hiragana: "おかえりなさい", katakana: "オカエリナサイ" },
