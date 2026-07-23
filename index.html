@@ -59,7 +59,7 @@
           <span>Katakana (カタカナ)</span>
         </button>
 
-        <!-- Menu Standar: Kanji (Baru) -->
+        <!-- Menu Standar: Kanji -->
         <button @click="switchTab('kanji_page')" 
                 :class="activeTab === 'kanji_page' ? 'bg-rose-600 text-white font-medium' : 'hover:bg-slate-800 hover:text-white'" 
                 class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition font-medium">
@@ -869,24 +869,20 @@
             let te = Math.floor((n % 100) / 10);
             let un = n % 10;
 
-            // Ribuan
             if (th === 1) { r.push('sen'); h.push('せん'); }
             else if (th === 3) { r.push('sanzen'); h.push('さんぜん'); }
             else if (th === 8) { r.push('hassen'); h.push('はっせん'); }
             else if (th > 0) { r.push(units[th] + '-sen'); h.push(unitsHira[th] + 'せん'); }
 
-            // Ratusan
             if (hu === 1) { r.push('hyaku'); h.push('ひゃく'); }
             else if (hu === 3) { r.push('sanbyaku'); h.push('さんびゃく'); }
             else if (hu === 6) { r.push('roppyaku'); h.push('ろっぴゃく'); }
             else if (hu === 8) { r.push('happyaku'); h.push('はっぴゃく'); }
             else if (hu > 0) { r.push(units[hu] + '-hyaku'); h.push(unitsHira[hu] + 'ひゃく'); }
 
-            // Puluhan
             if (te === 1) { r.push('juu'); h.push('じゅう'); }
             else if (te > 0) { r.push(units[te] + '-juu'); h.push(unitsHira[te] + 'じゅう'); }
 
-            // Satuan
             if (un > 0) { r.push(units[un]); h.push(unitsHira[un]); }
 
             return { romaji: r.join(' '), hiragana: h.join(' ') };
@@ -918,7 +914,6 @@
         generateRandomNumberItems(count = 12) {
           const items = [];
           for (let i = 0; i < count; i++) {
-            // Angka acak puluhan ribu - ratusan ribu (Contoh: 308.900 / 71.200)
             const num = Math.floor(Math.random() * 890000) + 10000;
             const jp = this.convertNumberToJapanese(num);
 
@@ -986,7 +981,6 @@
             let questionText = '';
             let correctAnswerText = '';
 
-            // 1. Kasus khusus Kana Tunggal
             if (item.hiragana && !item.indonesia) {
               questionText = isIndo ? item.hiragana : item.romaji;
               correctAnswerText = isIndo ? item.romaji : item.hiragana;
@@ -994,12 +988,10 @@
               questionText = isIndo ? item.katakana : item.romaji;
               correctAnswerText = isIndo ? item.romaji : item.katakana;
             } else {
-              // 2. Kosakata / Bilangan Biasa
               questionText = isIndo ? item.indonesia : item.romaji;
               correctAnswerText = isIndo ? `${item.romaji} (${item.hiragana || item.katakana})` : `${item.indonesia}`;
             }
 
-            // Buat Pengecoh
             const distractors = pool
               .filter(p => p.romaji !== item.romaji)
               .sort(() => 0.5 - Math.random())
@@ -1511,7 +1503,7 @@
             {
               subJudul: "Malam (晩 / 夜)",
               items: [
-                { indonesia: "Kemarin lusa malam", romaji: "ototoi no ban", hiragana: "おとtoiのばん", katakana: "オトトイノバン" },
+                { indonesia: "Kemarin lusa malam", romaji: "ototoi no ban", hiragana: "おとといのばん", katakana: "オトトイノバン" },
                 { indonesia: "Kemarin malam", romaji: "kinou no ban", hiragana: "きのうのばん", katakana: "キノウノバン" },
                 { indonesia: "Malam ini", romaji: "konban", hiragana: "こんばんは", katakana: "コンバン" },
                 { indonesia: "Besok malam", romaji: "ashita no ban", hiragana: "あしたのばん", katakana: "アシタノバン" },
