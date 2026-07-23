@@ -372,7 +372,7 @@
             </div>
           </template>
 
-          <!-- HALAMAN MATERI: HIRAGANA (KHUSUS HIRAGANA SAJA) -->
+          <!-- HALAMAN MATERI: HIRAGANA -->
           <template x-if="activeTab === 'hiragana_page'">
             <div class="space-y-4">
               <div class="flex justify-between items-center mb-2">
@@ -405,7 +405,7 @@
             </div>
           </template>
 
-          <!-- HALAMAN MATERI: KATAKANA (KHUSUS KATAKANA SAJA) -->
+          <!-- HALAMAN MATERI: KATAKANA -->
           <template x-if="activeTab === 'katakana_page'">
             <div class="space-y-4">
               <div class="flex justify-between items-center mb-2">
@@ -787,7 +787,7 @@
 
         // --- STATE LATIHAN KOTOBA ---
         quizStage: 'setup',
-        selectedCategories: ['hiragana_list', 'katakana_list', 'kata_bilangan', 'ungkapan_waktu', 'penanda_waktu', 'kata_keterangan', 'kata_benda', 'salam', 'kazoku', 'kk_gol1', 'kk_gol2', 'kk_gol3'],
+        selectedCategories: ['kanji_list', 'hiragana_list', 'katakana_list', 'kata_bilangan', 'ungkapan_waktu', 'penanda_waktu', 'kata_keterangan', 'kata_benda', 'salam', 'kazoku', 'kk_gol1', 'kk_gol2', 'kk_gol3'],
         quizQuestionMode: 'indonesia',
         quizTimeOption: '0',
         quizLength: '10',
@@ -806,6 +806,7 @@
         timeSpent: 0,
 
         quizCategories: [
+          { key: 'kanji_list', title: 'Kanji Dasar (N5)' },
           { key: 'hiragana_list', title: 'Huruf Hiragana (Per Karakter)' },
           { key: 'katakana_list', title: 'Huruf Katakana (Per Karakter)' },
           { key: 'kata_bilangan', title: 'Kata Bilangan (Suuji)' },
@@ -929,12 +930,16 @@
 
         getAllPoolItems() {
           let pool = [];
-          const allKeys = ['hiragana_list', 'katakana_list', 'kata_bilangan', 'ungkapan_waktu', 'penanda_waktu', 'kata_keterangan', 'kata_benda', 'salam', 'kazoku', 'kk_gol1', 'kk_gol2', 'kk_gol3'];
+          const allKeys = ['kanji_list', 'hiragana_list', 'katakana_list', 'kata_bilangan', 'ungkapan_waktu', 'penanda_waktu', 'kata_keterangan', 'kata_benda', 'salam', 'kazoku', 'kk_gol1', 'kk_gol2', 'kk_gol3'];
           
           allKeys.forEach(catKey => {
             const data = this.materiData[catKey];
             if (Array.isArray(data)) {
-              if (data.length > 0 && data[0].subJudul) {
+              if (catKey === 'kanji_list') {
+                data.forEach(k => {
+                  pool.push({ indonesia: `${k.kanji} (${k.arti})`, romaji: k.caraBaca, hiragana: k.caraBaca, katakana: k.kanji });
+                });
+              } else if (data.length > 0 && data[0].subJudul) {
                 data.forEach(sub => {
                   pool = pool.concat(sub.items);
                 });
@@ -952,6 +957,10 @@
             if (catKey === 'kata_bilangan') {
               pool = pool.concat(this.materiData.kata_bilangan);
               pool = pool.concat(this.generateRandomNumberItems(15));
+            } else if (catKey === 'kanji_list') {
+              this.materiData.kanji_list.forEach(k => {
+                pool.push({ indonesia: `${k.kanji} - Arti: ${k.arti}`, romaji: k.caraBaca, hiragana: k.caraBaca, katakana: k.kanji });
+              });
             } else {
               const data = this.materiData[catKey];
               if (Array.isArray(data)) {
@@ -1087,7 +1096,6 @@
 
         // --- DATA MATERI KOTOBA LENGKAP ---
         materiData: {
-          // --- MATERI KANJI DASAR ---
           kanji_list: [
             { id: 1, kanji: "山", arti: "Gunung", caraBaca: "やま / サン", contoh: [{ k: "やま", b: "yama", a: "Gunung" }, { k: "ふじ山", b: "fujisan", a: "Gunung Fuji" }] },
             { id: 2, kanji: "川", arti: "Sungai", caraBaca: "かわ", contoh: [{ k: "川のなか", b: "kawa no naka", a: "di dalam Sungai" }, { k: "山川さん", b: "yamakawa-san", a: "Saudara Yamakawa" }] },
@@ -1481,7 +1489,7 @@
             {
               subJudul: "Hari (日)",
               items: [
-                { indonesia: "Kemarin lusa", romaji: "ototoi", hiragana: "おとtoi", katakana: "オトトイ" },
+                { indonesia: "Kemarin lusa", romaji: "ototoi", hiragana: "おととい", katakana: "オトトイ" },
                 { indonesia: "Kemarin", romaji: "kinou", hiragana: "きのう", katakana: "キノウ" },
                 { indonesia: "Hari ini", romaji: "kyou", hiragana: "きょう", katakana: "キョウ" },
                 { indonesia: "Besok", romaji: "ashita", hiragana: "あした", katakana: "アシタ" },
@@ -1492,7 +1500,7 @@
             {
               subJudul: "Pagi (朝)",
               items: [
-                { indonesia: "Kemarin lusa pagi", romaji: "ototoi no asa", hiragana: "おとtoiのあさ", katakana: "オトトイノアサ" },
+                { indonesia: "Kemarin lusa pagi", romaji: "ototoi no asa", hiragana: "おとといのあさ", katakana: "オトトイノアサ" },
                 { indonesia: "Kemarin pagi", romaji: "kinou no asa", hiragana: "きのうのあさ", katakana: "キノウノアサ" },
                 { indonesia: "Tadi pagi", romaji: "kesa", hiragana: "けさ", katakana: "ケサ" },
                 { indonesia: "Besok pagi", romaji: "ashita no asa", hiragana: "あしたのあさ", katakana: "アシタノアサ" },
@@ -1503,8 +1511,8 @@
             {
               subJudul: "Malam (晩 / 夜)",
               items: [
-                { indonesia: "Kemarin lusa malam", romaji: "ototoi no ban", hiragana: "おとtoiのばん", katakana: "オトトイノバン" },
-                { indonesia: "Kemarin malam", romaji: "kinou no ban", hiragana: "きのうのばん", katakana: "キノウノバン" },
+                { indonesia: "Kemarin lusa malam", romaji: "ototoi no ban", hiragana: "おとといのばん", katakana: "オトトイノバン" },
+                { indonesia: "Kemarin malam", romaji: "kinou no ban", hiragana: "きのうのばん", katakana: "キノウノアサ" },
                 { indonesia: "Malam ini", romaji: "konban", hiragana: "こんばんは", katakana: "コンバン" },
                 { indonesia: "Besok malam", romaji: "ashita no ban", hiragana: "あしたのばん", katakana: "アシタノバン" },
                 { indonesia: "Lusa malam", romaji: "asatte no ban", hiragana: "あさってのばん", katakana: "アサッテノバン" },
@@ -1529,7 +1537,7 @@
                 { indonesia: "Bulan lalu", romaji: "sen getsu", hiragana: "せんげつ", katakana: "センゲツ" },
                 { indonesia: "Bulan ini", romaji: "kon getsu", hiragana: "こんげつ", katakana: "コンゲツ" },
                 { indonesia: "Bulan depan", romaji: "rai getsu", hiragana: "らいげつ", katakana: "ライゲツ" },
-                { indonesia: "Dua bulan lagi", romaji: "sa rai getsu", hiragana: "さらいげつ", katakana: "サライゲツ" },
+                { indonesia: "Dua bulan lagi", romaji: "sa rai getsu", hiragana: "さらいげつ", katakana: "サライげつ" },
                 { indonesia: "Setiap bulan", romaji: "maitsuki", hiragana: "まいつき", katakana: "マイツキ" }
               ]
             },
@@ -1844,7 +1852,7 @@
             { indonesia: "Rumah Sakit", romaji: "Byouin", hiragana: "びょういん", katakana: "ビョウイン" },
             { indonesia: "Bank", romaji: "Ginkou", hiragana: "ぎんこう", katakana: "ギンコウ" },
             { indonesia: "Departemen store", romaji: "Depato", hiragana: "でぱーと", katakana: "デパート" },
-            { indonesia: "Toko buku", romaji: "Honya", hiragana: "ほんや", katakana: "ホンYA" },
+            { indonesia: "Toko buku", romaji: "Honya", hiragana: "ほんや", katakana: "ホンヤ" },
             { indonesia: "Kantor", romaji: "Jimusyo", hiragana: "じむしょ", katakana: "ジムショ" },
             { indonesia: "Ruang kelas", romaji: "Kyousitsu", hiragana: "きょうしつ", katakana: "キョウシツ" },
             { indonesia: "Kamar", romaji: "Heya", hiragana: "へや", katakana: "ヘヤ" },
@@ -1935,7 +1943,7 @@
             { indonesia: "Cincin", romaji: "Yubiwa", hiragana: "ゆびわ", katakana: "ユビワ" },
             { indonesia: "Kota", romaji: "Machi", hiragana: "まち", katakana: "マチ" },
             { indonesia: "Tanah", romaji: "Suci", hiragana: "すち", katakana: "スチ" },
-            { indonesia: "Ranting", romaji: "Eda", hiragana: "えだ", katakana: "エDA" },
+            { indonesia: "Ranting", romaji: "Eda", hiragana: "えだ", katakana: "エダ" },
             { indonesia: "Jam tangan", romaji: "Ude tokei", hiragana: "うで とけい", katakana: "ウデ トケイ" },
             { indonesia: "Kereta api", romaji: "Densha", hiragana: "でんしゃ", katakana: "デンシャ" },
             { indonesia: "Kereta bawah tanah", romaji: "Chikaketsu", hiragana: "ちかけつ", katakana: "チカケツ" },
@@ -2198,7 +2206,7 @@
             { indonesia: "Dinas", romaji: "Shuccousuru", hiragana: "しゅっちょうする", katakana: "シュッチョウスル" },
             { indonesia: "Memperkenalkan", romaji: "Shoukaisuru", hiragana: "しょうかいする", katakana: "ショウカイスル" },
             { indonesia: "Makan (bersama)", romaji: "Shokujisuru", hiragana: "しょくじする", katakana: "ショウジスル" },
-            { indonesia: "Menghawatirkan, cemas", romaji: "Shinpaisuru", hiragana: "しんぱいする", katakana: "シンパイスル" },
+            { indonesia: "Menghawatirkan, cemas", romaji: "Shinpaisuru", hiragana: "しんぱいする", katakana: "シン파イスル" },
             { indonesia: "Mencuci pakaian", romaji: "Sentakusuru", hiragana: "せんたくする", katakana: "センタクスル" },
             { indonesia: "Membersihkan", romaji: "Soujisuru", hiragana: "そうじする", katakana: "ソウジスル" },
             { indonesia: "Membawa datang, mengajak datang", romaji: "Tsuretekuru", hiragana: "つれてくる", katakana: "ツレテクル" },
